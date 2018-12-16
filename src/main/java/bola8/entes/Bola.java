@@ -29,7 +29,6 @@ import java.awt.geom.Point2D;
     private Color color = Color.ORANGE;
     private Vector2D fuerzasAplicadas;
     private double proporcionDesplazamientoPendiente;
-    //private Vector2D vectorDesplazamiento;
 
     public Bola(Point2D p, double radio) {
         this(p.getX(), p.getY(), radio);
@@ -379,5 +378,10 @@ import java.awt.geom.Point2D;
         }
 
         return false;
+    }
+
+    @Override
+    public boolean activo() {
+        return radio > 0;
     }
 }

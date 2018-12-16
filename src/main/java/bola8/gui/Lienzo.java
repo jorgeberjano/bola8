@@ -10,7 +10,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
@@ -41,8 +40,6 @@ public class Lienzo extends JComponent {
     private Point2D corregirPosicion(Point2D punto) {
         return new Point2D.Double(punto.getX(), (int) (mundo.getAlto() - punto.getY()));
     }
-
-
 
     private void inicializar() {
         addMouseWheelListener(new MouseWheelListener() {
@@ -117,6 +114,8 @@ public class Lienzo extends JComponent {
         Graphics2D graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         //ConfiguracionGraphics config = new ConfiguracionGraphics(graphics);
+        
+        graphics.drawString("En movimiento: " + mundo.getNumeroEntesEnMovimiento(), 0, 20);
 
         AffineTransform tx = AffineTransform.getTranslateInstance(0, mundo.getAlto());
         tx.scale(1, -1);

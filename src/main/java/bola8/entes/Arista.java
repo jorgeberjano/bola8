@@ -98,5 +98,4 @@ public class Arista implements Ente {
     public void setPermitirTraspasar(boolean permiteTraspasar) {
         this.permiteIntrusion = permiteTraspasar;
     }
-
 }

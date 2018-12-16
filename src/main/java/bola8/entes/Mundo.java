@@ -5,7 +5,6 @@ import bola8.geometria.VectorPolar2D;
 import bola8.fuerzas.FuerzaExterna;
 import bola8.geometria.Angulo;
 import bola8.geometria.Geometria;
-import bola8.gui.Lienzo;
 import bola8.utilidades.ListaDoble;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -17,11 +16,11 @@ import java.util.List;
  */
 public class Mundo {
 
-    private List<Ente> entes;
-    private List<Ente> entesEstaticos;
-    private List<EnteMovil> entesMoviles;
-    private List<EnteMovil> entesMovilesEnMovimiento;
-    public static List<Colision> colisionesEjecutadas = new ArrayList<Colision>();
+    private final List<Ente> entes;
+    private final List<Ente> entesEstaticos;
+    private final List<EnteMovil> entesMoviles;
+    private final List<EnteMovil> entesMovilesEnMovimiento;
+    public List<Colision> colisionesEjecutadas = new ArrayList<Colision>();
     public List<FuerzaExterna> fuerzas;
     public double ancho = 500;
     public double alto = 500;
@@ -58,6 +57,10 @@ public class Mundo {
 
     public void setAngulo(Angulo angulo) {
         this.angulo = angulo;
+    }
+    
+    public int getNumeroEntesEnMovimiento() {
+        return entesMovilesEnMovimiento.size();
     }
 
     public void agregar(List listaEntes) {
@@ -106,7 +109,7 @@ public class Mundo {
     }
 
     public void pintar(Graphics2D graphics) {
-
+        
         for (Ente ente : entes) {
             ente.pintar(graphics);
         }
@@ -119,6 +122,10 @@ public class Mundo {
     private void comprobarMovimientoEnte(EnteMovil enteMovil) {
         if (enteMovil == null) {
             return;
+        }
+        if (!enteMovil.activo()) {
+            entesMoviles.remove(enteMovil);
+            entesMovilesEnMovimiento.remove(enteMovil);
         }
 
         if (!entesMovilesEnMovimiento.contains(enteMovil)) {

@@ -9,6 +9,8 @@ import java.awt.geom.Point2D;
  */
 public interface EnteMovil extends Ente, Cloneable {
 
+    boolean activo();
+        
     void mover();
 
     void deshacerMovimiento();
